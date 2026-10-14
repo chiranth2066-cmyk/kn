@@ -9,6 +9,8 @@ export const Route = createFileRoute("/voice")({
       { name: "description", content: "Talk naturally with your health companion." },
       { property: "og:title", content: "Voice assistant — Vesper" },
       { property: "og:description", content: "Talk naturally with your health companion." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: () => (

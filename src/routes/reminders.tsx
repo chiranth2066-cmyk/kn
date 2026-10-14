@@ -9,6 +9,8 @@ export const Route = createFileRoute("/reminders")({
       { name: "description", content: "Morning, afternoon and evening medicine reminders with voice and LED alerts." },
       { property: "og:title", content: "Medicine reminders — Vesper" },
       { property: "og:description", content: "A calm, precise medicine schedule." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Reminders,

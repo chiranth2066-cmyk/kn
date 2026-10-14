@@ -8,6 +8,8 @@ export const Route = createFileRoute("/conversations")({
       { name: "description", content: "Past conversations with your health companion." },
       { property: "og:title", content: "Conversations — Vesper" },
       { property: "og:description", content: "Past conversations with your health companion." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: () => (

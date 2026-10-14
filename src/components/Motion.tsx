@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
+import { GlassLayer } from "./LiquidGlass";
 
 /** Scroll Reveal: fades/lifts children when they enter the viewport. */
 export function Reveal({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
@@ -38,13 +39,16 @@ export function Spotlight({ children, className = "" }: { children: ReactNode; c
     <div
       ref={ref}
       onPointerMove={(e) => {
-        const r = ref.current!.getBoundingClientRect();
-        ref.current!.style.setProperty("--mx", `${e.clientX - r.left}px`);
-        ref.current!.style.setProperty("--my", `${e.clientY - r.top}px`);
+        const el = ref.current;
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+        el.style.setProperty("--my", `${e.clientY - r.top}px`);
       }}
-      className={`motion-spotlight ${className}`}
+      className={`glass-host motion-spotlight ${className}`}
     >
-      {children}
+      <GlassLayer />
+      <div data-liquid-ignore className="glass-content">{children}</div>
     </div>
   );
 }

@@ -9,6 +9,8 @@ export const Route = createFileRoute("/sensors")({
       { name: "description", content: "Scan heart rate, SpO₂ and body temperature from your ESP32 device." },
       { property: "og:title", content: "Live sensors — Vesper" },
       { property: "og:description", content: "Instrument-grade live readings from MAX30102 and MAX30205 sensors." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Sensors,

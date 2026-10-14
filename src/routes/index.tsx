@@ -11,6 +11,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Your voice-first health companion: vitals, reminders and conversation in one calm place." },
       { property: "og:title", content: "Overview — Vesper Health Companion" },
       { property: "og:description", content: "Voice-first health companion for heart rate, SpO₂, temperature and medicine reminders." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
