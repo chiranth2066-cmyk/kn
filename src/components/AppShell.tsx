@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import { Activity, Clock, History, Menu, Mic, Pill, Settings, X, LayoutGrid } from "lucide-react";
+import { Reveal } from "./Motion";
 
 const nav = [
   { to: "/", label: "Overview", icon: LayoutGrid },
@@ -75,11 +76,11 @@ export function PageHead({ eyebrow, title, lede, aside }: { eyebrow: string; tit
   return (
     <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
       <div className="max-w-xl">
-        <div className="eyebrow mb-5">{eyebrow}</div>
-        <h1 className="display-xl">{title}</h1>
-        {lede && <p className="mt-4 max-w-md text-[15px] text-muted-foreground">{lede}</p>}
+        <Reveal><div className="eyebrow mb-5">{eyebrow}</div></Reveal>
+        <Reveal delay={80}><h1 className="display-xl">{title}</h1></Reveal>
+        {lede && <Reveal delay={200}><p className="mt-4 max-w-md text-[15px] text-muted-foreground">{lede}</p></Reveal>}
       </div>
-      {aside}
+      {aside && <Reveal delay={260}>{aside}</Reveal>}
     </div>
   );
 }

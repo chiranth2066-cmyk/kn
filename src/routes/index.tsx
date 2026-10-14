@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHead } from "@/components/AppShell";
 import { VoiceWorkspace } from "@/components/Voice";
 import { MetricStrip } from "@/components/Metrics";
+import { BlurText, Reveal } from "@/components/Motion";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,12 +26,12 @@ function Index() {
     <>
       <PageHead
         eyebrow={new Date().toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long" })}
-        title={<span suppressHydrationWarning>{greeting()}</span>}
+        title={<span suppressHydrationWarning><BlurText text={greeting()} /></span>}
         lede="Your health companion is here."
       />
       <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_280px]">
-        <VoiceWorkspace compact />
-        <aside className="space-y-10">
+        <Reveal delay={300}><VoiceWorkspace compact /></Reveal>
+        <Reveal delay={420}><aside className="space-y-10">
           <div>
             <div className="flex items-baseline justify-between"><h2 className="text-[15px] font-semibold">Vitals</h2><Link to="/sensors" className="text-[12px] text-muted-foreground hover:text-foreground">Sensors →</Link></div>
             <div className="rule mt-3"><MetricStrip vertical /></div>
@@ -43,7 +44,7 @@ function Index() {
               ))}
             </ul>
           </div>
-        </aside>
+        </aside></Reveal>
       </div>
       <p className="mt-16 max-w-lg text-[12px] text-muted-foreground">Vesper is informational and not a medical diagnosis. Speak to a clinician about any concern.</p>
     </>
