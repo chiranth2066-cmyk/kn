@@ -122,3 +122,16 @@
 button:not(:disabled), a { transition: color 200ms var(--ease-out), background-color 200ms var(--ease-out), transform 200ms var(--ease-out), opacity 200ms var(--ease-out); }
 button:not(:disabled):active { transform: scale(0.97); }
 @media (prefers-reduced-motion: reduce) { .motion-reveal, .motion-word { opacity: 1 !important; transform: none !important; filter: none !important; } }
+
+/* liquidGL renders decorative optics behind the original, live DOM content. */
+.glass-host { --glass-sheen: color-mix(in oklab, var(--surface) 65%, transparent); }
+.glass-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.glass-content { position: relative; z-index: 2; }
+.glass-host:has(> .glass-layer[data-glass-ready="true"]) { background-color: transparent; }
+.glass-layer[data-glass-ready="true"] { border-top: 1px solid var(--glass-sheen); }

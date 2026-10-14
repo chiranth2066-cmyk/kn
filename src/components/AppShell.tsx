@@ -1,7 +1,9 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import { Activity, Clock, History, Menu, Mic, Pill, Settings, X, LayoutGrid } from "lucide-react";
 import { Reveal } from "./Motion";
+import { GlassLayer, LiquidGlass } from "./LiquidGlass";
+import { Button } from "./ui/button";
 
 const nav = [
   { to: "/", label: "Overview", icon: LayoutGrid },
@@ -20,7 +22,7 @@ export function StatusDot({ tone }: { tone: "ok" | "off" | "warn" | "live" }) {
 
 function NavBody({ onNavigate }: { onNavigate?: () => void }) {
   return (
-    <div className="flex h-full flex-col">
+    <div className="glass-content flex h-full flex-col">
       <div className="px-6 pt-7 pb-10">
         <div className="font-display text-[26px] leading-none tracking-tight">Vesper</div>
         <div className="eyebrow mt-2">Health companion</div>
@@ -50,14 +52,18 @@ function NavBody({ onNavigate }: { onNavigate?: () => void }) {
 
 export function AppShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const pathname = useLocation({ select: (location) => location.pathname });
   return (
     <div className="min-h-screen">
-      <aside className="fixed inset-y-0 left-0 hidden w-[216px] border-r lg:block">
+      <LiquidGlass pageKey={`${pathname}:${open}`} />
+      <aside className="glass-host fixed inset-y-0 left-0 z-20 hidden w-[216px] border-r lg:block">
+        <GlassLayer />
         <NavBody />
       </aside>
-      <header className="sticky top-0 z-30 flex items-center justify-between border-b bg-background px-5 py-3.5 lg:hidden">
-        <span className="font-display text-2xl leading-none">Vesper</span>
-        <button aria-label="Open navigation" onClick={() => setOpen(true)} className="p-1.5"><Menu className="size-5 stroke-[1.6]" /></button>
+      <header className="glass-host sticky top-0 z-30 flex items-center justify-between border-b bg-background px-5 py-3.5 lg:hidden">
+        <GlassLayer />
+        <span className="glass-content font-display text-2xl leading-none">Vesper</span>
+        <Button variant="ghost" aria-label="Open navigation" onClick={() => setOpen(true)} className="glass-content h-auto rounded-none p-1.5"><Menu className="size-5 stroke-[1.6]" /></Button>
       </header>
       {open && (
         <div className="fixed inset-0 z-40 bg-background lg:hidden">
@@ -87,9 +93,10 @@ export function PageHead({ eyebrow, title, lede, aside }: { eyebrow: string; tit
 
 export function Offline({ children }: { children: ReactNode }) {
   return (
-    <div className="flex items-start gap-3 border-l-2 border-warning bg-surface px-4 py-3 text-[13px] text-muted-foreground">
-      <span className="eyebrow mt-0.5 shrink-0 text-warning">Offline</span>
-      <span>{children}</span>
+    <div className="glass-host relative flex items-start gap-3 border-l-2 border-warning bg-surface px-4 py-3 text-[13px] text-muted-foreground">
+      <GlassLayer />
+      <span className="glass-content eyebrow mt-0.5 shrink-0 text-warning">Offline</span>
+      <span className="glass-content">{children}</span>
     </div>
   );
 }
