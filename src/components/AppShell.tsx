@@ -22,7 +22,7 @@ export function StatusDot({ tone }: { tone: "ok" | "off" | "warn" | "live" }) {
 
 function NavBody({ onNavigate }: { onNavigate?: () => void }) {
   return (
-    <div className="glass-content flex h-full flex-col">
+    <div data-liquid-ignore className="glass-content flex h-full flex-col">
       <div className="px-6 pt-7 pb-10">
         <div className="font-display text-[26px] leading-none tracking-tight">Vesper</div>
         <div className="eyebrow mt-2">Health companion</div>
@@ -62,8 +62,8 @@ export function AppShell({ children }: { children: ReactNode }) {
       </aside>
       <header className="glass-host sticky top-0 z-30 flex items-center justify-between border-b bg-background px-5 py-3.5 lg:hidden">
         <GlassLayer />
-        <span className="glass-content font-display text-2xl leading-none">Vesper</span>
-        <Button variant="ghost" aria-label="Open navigation" onClick={() => setOpen(true)} className="glass-content h-auto rounded-none p-1.5"><Menu className="size-5 stroke-[1.6]" /></Button>
+        <span data-liquid-ignore className="glass-content font-display text-2xl leading-none">Vesper</span>
+        <Button data-liquid-ignore variant="ghost" aria-label="Open navigation" onClick={() => setOpen(true)} className="glass-content h-auto rounded-none p-1.5"><Menu className="size-5 stroke-[1.6]" /></Button>
       </header>
       {open && (
         <div className="fixed inset-0 z-40 bg-background lg:hidden">
@@ -95,8 +95,8 @@ export function Offline({ children }: { children: ReactNode }) {
   return (
     <div className="glass-host relative flex items-start gap-3 border-l-2 border-warning bg-surface px-4 py-3 text-[13px] text-muted-foreground">
       <GlassLayer />
-      <span className="glass-content eyebrow mt-0.5 shrink-0 text-warning">Offline</span>
-      <span className="glass-content">{children}</span>
+      <span data-liquid-ignore className="glass-content eyebrow mt-0.5 shrink-0 text-warning">Offline</span>
+      <span data-liquid-ignore className="glass-content">{children}</span>
     </div>
   );
 }

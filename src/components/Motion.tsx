@@ -48,7 +48,7 @@ export function Spotlight({ children, className = "" }: { children: ReactNode; c
       className={`glass-host motion-spotlight ${className}`}
     >
       <GlassLayer />
-      <div className="glass-content">{children}</div>
+      <div data-liquid-ignore className="glass-content">{children}</div>
     </div>
   );
 }
