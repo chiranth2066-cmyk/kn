@@ -9,6 +9,8 @@ export const Route = createFileRoute("/history")({
       { name: "description", content: "Every saved heart rate, SpO₂ and temperature reading." },
       { property: "og:title", content: "Reading history — Vesper" },
       { property: "og:description", content: "A precise record of your saved health readings." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: History,

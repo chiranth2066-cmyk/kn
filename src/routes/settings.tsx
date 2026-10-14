@@ -8,6 +8,8 @@ export const Route = createFileRoute("/settings")({
       { name: "description", content: "Device and voice service settings." },
       { property: "og:title", content: "Settings — Vesper" },
       { property: "og:description", content: "Device and voice service settings." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Settings,
