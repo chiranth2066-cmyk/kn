@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Offline, PageHead, StatusDot } from "@/components/AppShell";
+import { Reveal, Spotlight } from "@/components/Motion";
 
 export const Route = createFileRoute("/sensors")({
   head: () => ({
@@ -36,8 +37,9 @@ function Sensors() {
       />
       <Offline>The ESP32 isn't reachable. Readings will appear here as soon as the device connects — nothing is shown until then.</Offline>
       <div className="mt-12 grid gap-px bg-border md:grid-cols-2">
-        {modules.map((m) => (
-          <section key={m.name} className="bg-background p-0 md:p-8 md:first:pl-0 py-8">
+        {modules.map((m, i) => (
+          <Reveal key={m.name} delay={i * 120} className="bg-background"><Spotlight className="h-full">
+          <section className="p-0 md:p-8 py-8">
             <div className="flex items-start justify-between">
               <div>
                 <div className="eyebrow">{m.role}</div>
@@ -58,6 +60,7 @@ function Sensors() {
               <Btn>{m.action}</Btn>
             </div>
           </section>
+          </Spotlight></Reveal>
         ))}
       </div>
     </>
